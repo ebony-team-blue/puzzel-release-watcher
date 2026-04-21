@@ -1,7 +1,7 @@
 import requests, json, os
 from datetime import datetime, timezone
 
-ZENDESK_URL = "https://help.puzzel.com/api/v2/help_center/en-us/sections/29885/articles.json"
+ZENDESK_URL = "https://puzzel.zendesk.com/api/v2/help_center/en-us/sections/29885/articles.json"
 SLACK_WEBHOOK = os.environ["SLACK_WEBHOOK_URL"]
 SEEN_FILE = "last_seen_article.json"
 
