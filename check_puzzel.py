@@ -6,7 +6,10 @@ SLACK_WEBHOOK = os.environ["SLACK_WEBHOOK_URL"]
 SEEN_FILE = "last_seen_article.json"
 
 def get_latest_article():
-    resp = requests.get(ZENDESK_URL, params={"sort_by": "created_at", "sort_order": "desc", "per_page": 1})
+    headers = {"User-Agent": "Mozilla/5.0"}
+    resp = requests.get(ZENDESK_URL, headers=headers, params={"sort_by": "created_at", "sort_order": "desc", "per_page": 1})
+    print(f"Status: {resp.status_code}")
+    print(f"Response: {resp.text[:500]}")
     resp.raise_for_status()
     articles = resp.json().get("articles", [])
     return articles[0] if articles else None
